@@ -1,6 +1,6 @@
 # newsite
 
-> My kickass Nuxt.js project
+> My ultimate Nuxt.js project
 
 ## Build Setup
 
