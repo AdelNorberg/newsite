@@ -6,16 +6,34 @@
         <div class="header-text">Kweebec</div>
       </header>
       <nav class="nav-bar">
-        <div>
+        <div class="nav-lists">
           <nuxt-link to="/">
-            <home class="home-icon nav-bar-list" />
+            <home class="home-icon" />
           </nuxt-link>
           <nuxt-link v-for="(item, key) in routers" :to="'/' + item.router" :key="key" class="nav-bar-list">{{ item.name }}</nuxt-link>
         </div>
-        <div class="sign-button"><nuxt-link to="sign" class="sign">Войти</nuxt-link></div>
+        <div class="nav-right-box">
+          <nuxt-link to="/addNews">
+            <div class="add-news">Добавить новость</div>
+          </nuxt-link>
+          <div class="sign-button"><nuxt-link to="sign" class="sign">Войти</nuxt-link></div>
+        </div>
       </nav>
       <nuxt />
-      <footer class="footer">Footer</footer>
+      <footer class="footer">
+        <div class="footer-info">
+          ©2019 hytale-kweebec.ru
+        </div>
+        <div class="following-box">
+          <a href=""></a>
+          <span class="separator"></span>
+          <a href="">a</a>
+          <span class="separator"></span>
+          <a href="">s</a>
+          <span class="separator"></span>
+          <a href="">d</a>
+        </div>
+      </footer>
     </div>
   </div>
 </template>
@@ -30,10 +48,10 @@ export default {
   data() {
     return {
       routers: [
-        { name: 'Моды', router: 'mods' },
-        { name: 'Карты', router: 'maps' },
-        { name: 'Сборки', router: 'assembly' },
-        { name: 'Текстуры', router: 'textures' }
+        { name: 'Моды', router: 'error' },
+        { name: 'Карты', router: 'error' },
+        { name: 'Сборки', router: 'error' },
+        { name: 'Текстуры', router: 'error' }
       ]
     }
   }
@@ -41,9 +59,11 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Alegreya+SC:400,400i,500,500i,700,700i,800,800i,900,900i');
+
 html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-family: 'Helvetica Neue', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, Arial, sans-serif;
   font-size: 16px;
   word-spacing: 1px;
   -ms-text-size-adjust: 100%;
@@ -52,6 +72,7 @@ html {
   -webkit-font-smoothing: antialiased;
   box-sizing: border-box;
   background-color: #10233F;
+  color: white;
 }
 
 *,
@@ -117,6 +138,7 @@ h1, h2, h3, h4, .footer, .header, .nav-bar {
   border-radius: 5px;
   position: relative;
   border: 2px solid #15243a;
+  margin-bottom: 2rem;
   // :before {
   //   top: 0;
   //   left: 0;
@@ -143,17 +165,45 @@ h1, h2, h3, h4, .footer, .header, .nav-bar {
   // }
 }
 
-.nav-bar-list {
-  padding-left: 0.9rem;
+.add-news {
+  font-size: 1.2rem;
   color: #a5b9c6;
-  :hover {
+  font-weight: 600;
+  margin-top: 0.45rem;
+  margin-right: 1.2rem;
+  transition: 0.5s;
+  &:hover {
     color: #edb548;
   } 
 }
 
+.nav-lists {
+  margin-left: 1.5rem;
+  margin-bottom: 0.1rem;
+}
+
+.nav-bar-list {
+  padding-left: 1rem;
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: #a5b9c6;
+  transition: 0.5s;
+  &:hover {
+    color: #edb548;
+  } 
+}
+
+.nav-right-box {
+  display: flex;
+}
+
 .home-icon {
   height: 1.5rem;
-  padding-top: 0.2rem;
+  padding-top: 0.3rem;
+  color: #ecbc62;
+  font-size: 1.5rem;
+  background: radial-gradient(ellipse at center, rgba(237, 181, 72, 0.1) 0%,
+            rgba(237, 181, 72, 0.1) 20%, rgba(237, 181, 72, 0) 70%, rgba(237, 181, 72, 0) 100%);
 }
 
 .sign-button {
@@ -169,17 +219,41 @@ h1, h2, h3, h4, .footer, .header, .nav-bar {
   background: linear-gradient(to bottom, #3583b4, #225b8b);
   box-sizing: border-box;
   box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.3);
+  &:hover {
+    background: linear-gradient(to bottom, #4c8db6, hsl(207, 59%, 36%));
+  }
 }
 
 .footer {
   height: 100px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   font-size: 20px;
   margin-top: 2rem;
   margin-bottom: 1rem;
   background-color: #10161E;
   box-shadow: inset 0 0 0 1px #2c2b22;
+  border-radius: 5px;
+}
+
+.following-box {
+  background: linear-gradient(#f5fbff, #bfe6ff);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.footer-info {
+  font-size: 1rem;
+}
+
+.separator {
+  display: inline-block;
+  width: 1px;
+  height: 20px;
+  background: #32372b;
+  vertical-align: middle;
+  font-size: 1.2em;
+  line-height: 70px;
 }
 </style>
